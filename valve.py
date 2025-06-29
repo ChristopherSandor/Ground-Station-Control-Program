@@ -2,7 +2,8 @@
 
 class Valve:
     valve_type = None
-    status = None 
+    valve_name = None
+    status = False 
     port = None
 
     # valve_type = ball, soleniod, etc
@@ -10,9 +11,16 @@ class Valve:
     # port = serial port
 
     # Setters:
-    def __init__(self, valve_type):
+    def __init__(self, valve_type, valve_name, status, port):
         self.valve_type = valve_type
-        self.status = False
+        self.valve_name = valve_name
+
+        if(status == "close"):
+            self.status = False
+        elif(status == "open"):
+            self.status = True
+
+        self.port = port
     
     def set_port(self, port):
         self.port = port
@@ -28,6 +36,9 @@ class Valve:
     # Getters:
     def get_status(self):
         return self.status
+    
+    def get_valve_name(self):
+        return self.valve_name
     
     def get_type(self):
         return self.valve_type

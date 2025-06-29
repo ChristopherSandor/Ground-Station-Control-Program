@@ -1,0 +1,4 @@
+tank1:COM1
+tank2:COM2
+chamber:COM3
+engine:COM4

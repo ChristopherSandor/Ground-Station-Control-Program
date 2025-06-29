@@ -18,6 +18,19 @@ ctk.set_default_color_theme("blue")
 #
 #
 #
+# Program/Error Shutdown
+def main_shutdown():
+    print("hello")
+
+def on_closing():
+    main_shutdown()
+    app.destroy()
+
+app.protocol("WM_DELETE_WINDOW", on_closing)
+
+#
+#
+#
 # PAGE CREATION:
 
 # Gives the whole page a 2x1 grid, which the gridframe lives in:
@@ -130,19 +143,6 @@ for r in range(5):
 # Runs the app
 app.mainloop()
 
-
-#
-#
-#
-# Program/Error Shutdown
-def main_shutdown():
-    print("hello")
-
-def on_closing():
-    main_shutdown()
-    app.destroy()
-
-app.protocol("WM_DELETE_WINDOW", on_closing)
 
 try:
     app.mainloop()
