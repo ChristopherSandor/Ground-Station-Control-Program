@@ -27,10 +27,12 @@ class Valve:
     
     def open(self):
         self.status = True
+        print("Opening: " + self.valve_name)
         # talk to micro controller
 
     def close(self):
         self.status = False
+        print("Closing: " + self.valve_name)
         # talk to micro controller
 
     # Getters:

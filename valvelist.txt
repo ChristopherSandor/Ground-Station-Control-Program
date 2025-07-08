@@ -1,6 +1,6 @@
-ball:valve1:close:COM5
-ball:valve2:close:COM6
-ball:valve3:open:COM7
-sole:valve4:open:COM8
-sole:valve5:close:COM9
-ball:valve6:close:COM10
+ball:Valve 1:close:COM5
+ball:Valve 2:close:COM6
+ball:Valve 3:open:COM7
+sole:Valve 4:open:COM8
+sole:Valve 5:close:COM9
+ball:Valve 6:close:COM10

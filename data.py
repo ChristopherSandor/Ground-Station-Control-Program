@@ -7,6 +7,7 @@ class Data:
     valves_list = []
     sensors_list = []
 
+    # Setters
     def __init__ (self, valve_list_file, sensor_list_file):
         
         with open(valve_list_file, 'r') as file:
@@ -27,8 +28,18 @@ class Data:
                 s = Sensor(components[0], components[1])
                 self.sensors_list.append(s)
 
+
+    # Getters
+    def getValve_list(self):
+        return self.valves_list
+
+    def getSensor_list(self):
+        return self.sensors_list
+
+    # Control
     def shutDown_ALL(self):
-        for valve in self.valves_list:
-            valve.close()
+        for v in self.valves_list:
+            v.close()
+    
 
 

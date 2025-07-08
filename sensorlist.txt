@@ -1,4 +1,5 @@
-tank1:COM1
-tank2:COM2
-chamber:COM3
-engine:COM4
+Tank 1:COM0
+Tank 2:COM1
+Tank 3:COM2
+Chamber:COM3
+Engine:COM4
