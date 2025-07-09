@@ -26,18 +26,26 @@ class Valve:
         self.port = port
     
     def open(self):
-        self.status = True
-        print("Opening: " + self.valve_name)
-        # talk to micro controller
+        if(self.status != True):
+            self.status = True
+            print("Opening: " + self.valve_name)
+            # talk to micro controller
 
     def close(self):
-        self.status = False
-        print("Closing: " + self.valve_name)
-        # talk to micro controller
+        if(self.status != False):
+            self.status = False
+            print("Closing: " + self.valve_name)
+            # talk to micro controller
 
     # Getters:
     def get_status(self):
-        return self.status
+
+        if(self.status == True):
+            return "Open"
+        elif(self.status == False):
+            return "Closed"
+        else:
+            return "ERROR"
     
     def get_valve_name(self):
         return self.valve_name
