@@ -4,8 +4,10 @@ from functools import partial
 
 import customtkinter as ctk
 import matplotlib.pyplot as plt
+import tkinter as tk
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.patches import FancyBboxPatch
 
 from valve import Valve
 from sensor import Sensor
@@ -220,21 +222,25 @@ col_count_graph = 2
 row_count_graph = math.ceil(len(sensor_list)/col_count_graph)
 
 for r in range(row_count_graph):
-    graph_page_grid_frame.rowconfigure(r, weight=2)
+    graph_page_grid_frame.rowconfigure(r, weight=1)
 for c in range(col_count_graph):
-    graph_page_grid_frame.columnconfigure(c, weight=1)
+    graph_page_grid_frame.columnconfigure(c, weight=1, uniform="graphs")
+
 
 for idx, sensor in enumerate(sensor_list):
     r = idx // col_count_graph
     c = idx % col_count_graph
 
-    cell = ctk.CTkFrame(graph_page_grid_frame, fg_color="pink")
+    cell = ctk.CTkFrame(graph_page_grid_frame, fg_color="#2E2E2E", corner_radius=8)
     cell.grid(row=r, column=c, padx=15, pady=15, sticky="nsew")
     cell.grid_rowconfigure(0, weight=1)
     cell.grid_columnconfigure(0, weight=1)
 
     fig = Figure(figsize=(4, 3), dpi=110,  facecolor="#2E2E2E")
-    ax  = fig.add_subplot(111, facecolor="#3A3A3A"  )
+    fig.subplots_adjust(bottom=0.2)
+    ax = fig.add_subplot(111, facecolor="#3A3A3A")
+
+    
     ax.set_title(sensor.sensor_name)
     ax.set_xlabel("Time (s)")
     ax.set_ylabel("Pressure (PSI)")
@@ -296,7 +302,7 @@ def update_all_sensors():
 
 
 
-    app.after(100, update_all_sensors)
+    app.after(800, update_all_sensors)
 app.after(0, update_all_sensors)
 
 # 

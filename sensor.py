@@ -1,5 +1,7 @@
 # Sensor class:
 from collections import deque
+import serial
+import time
 
 def is_within_tolerance(num, target, tol):
     verdict = (abs(num - target) < tol)
@@ -9,45 +11,33 @@ class Sensor:
     sensor_name = None
     port = None
     s_data = 0.0
-
-    # Count is helper for rn delete later
-    count = 0
-    trigger = True
-
+    ser = None
     trend_collection = None
 
    # Setters:
     def __init__ (self, sensor_name, port):
         self.sensor_name = sensor_name
-        self.s_data = 0
         self.port = port
+        self.s_data = 0
         self.trend_collection = deque(maxlen=5)
         self.trend_collection.append(0)
-        self.trigger = True
-    
-    def set_port(self, port):
-        self.port = port
-    
+
+        if(type(self).ser == None):
+            type(self).ser = serial.Serial(port, 115200, timeout=1)
+
    # Getters:
+
+    def translate_data(self, raw_data):
+        # Do shit here from microcontroller and translate it to an actual number
+        true_data = raw_data.decode('utf-8').strip()
+
+        return float(true_data)
+
     def get_data(self):
-
-        # Gets New Data:
-        if(self.count > 100 and self.trigger == False):
-            self.count = self.count - 8
-            self.trigger = True
-        else:
-            self.count = self.count + 1
-            
-        self.s_data = self.count
-
-        # Updates New Trend
-        self.trend_collection.append(self.s_data)
-
+        raw = type(self).ser.readline()
+        self.s_data = self.translate_data(raw)
         return self.s_data
 
-    def translate_data(self):
-        # Do shit here from microcontroller and translate it to an actual number
-        return None
 
     def trend(self, tol=7.5):
 

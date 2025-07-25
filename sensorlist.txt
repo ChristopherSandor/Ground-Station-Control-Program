@@ -1,5 +1,5 @@
-Tank 1:COM0
-Tank 2:COM1
-Tank 3:COM2
-Chamber:COM3
-Engine:COM4
+Tank 1:COM60
+Tank 2:COM60
+Tank 3:COM60
+Chamber:COM60
+Engine:COM60
